@@ -28,12 +28,36 @@ const addStore = async(req,res) =>{
 }
 
 const updateStore = async(req,res) =>{
-   const {clinicId} = req.params
+   const {id:clinicId} = req.params
+   const {ClinicId,Address} = req.body
+   
+   const verifyClinic = await Store.findOne({_id:clinicId})
+
+   if(!verifyClinic){
+     throw new customError.NotFoundError(`There is no store with Id ${clinicId}`)
+   }
+
+   verifyClinic.ClinicId = ClinicId
+   verifyClinic.Address = Address
+
+   await verifyClinic.save()
+
+   res.status(StatusCodes.OK).json({msg:'Store Successfully updated'})
 }
 
 
 const removeStore = async(req,res) =>{
-  res.send('remove store details')
+  const {id:clinicId} = req.params
+
+  const removeClinic = await Store.findOneAndDelete({_id:clinicId})
+
+  if(!removeClinic){
+    throw new customError.NotFoundError('No records found')
+  }
+
+  await removeClinic.remove()
+
+  res.status(StatusCodes.OK).json({msg:'Clinic removed Successfully'})
 } 
 
 
