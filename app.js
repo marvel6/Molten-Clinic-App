@@ -16,8 +16,16 @@ const connectDb = require('./db/connect')
 
 const router = require('./router/addStoreRouter')
 
+
+//middleware functions
+
+
+
+
 app.use(express.json())
 app.use(morgan("tiny"))
+
+app.use(express.static('./public'))
 
 
 app.use('/api/v1/auth/stores',router)
