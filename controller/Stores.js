@@ -28,7 +28,7 @@ const addStore = async(req,res) =>{
 }
 
 const updateStore = async(req,res) =>{
-   res.send('update store details')
+   const {clinicId} = req.params
 }
 
 

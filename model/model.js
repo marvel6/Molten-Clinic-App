@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const geocoder = require('../utils/geoCoder')
 
 const addStoreSchema = new mongoose.Schema({
     ClinicId:{
@@ -30,6 +30,19 @@ const addStoreSchema = new mongoose.Schema({
         }
       }
 
+})
+
+addStoreSchema.pre('save',async function(next){
+  const loc = await geocoder.geocode(this.Address)
+ 
+   this.location = {
+     type:'Point',
+     coordinates:[loc[0].latitude,loc[0].longitude],
+     formattedAddress:loc[0].formattedAddress
+   }
+
+   this.Address = undefined
+   next()
 })
 
 
