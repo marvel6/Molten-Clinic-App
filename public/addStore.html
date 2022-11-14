@@ -3,10 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Marvellous Solomon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Add Clinic Service</title>
+
+    <!-- Css Styling -->
+    <link rel="stylesheet" type="text/css" href="css/addstore.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <h2>Add Clinic Store</h2>
-</body>
+    <div class="container" style="position: absolute; left: 450px">
+        <form action="" class="mt" method="">
+          <div class="title"> Add <span id="clinic"> Clinic </span> Store </div> 
+            <i class="fa-solid fa-heart" style="color: blue; position: absolute; left: 140px"></i>
+          <div class="input-box underline">
+            <input type="text" name="CLinic_Id" placeholder="Clinic Id" id="clincId" required>
+            <div class="underline"></div>
+          </div>
+          <div class="input-box">
+            <input type="text" name="password" placeholder="Location" id="location" required>
+            <div class="underline"></div>
+          </div>
+          <div class="input-box button">
+            <a href="index.html"><input type="button" name="back" id="back" value="Back"> </a>
+            <input type="submit" name="login"  id="submitbtn" value="Submit">
+          </div>
+        </form>
+
+        <script src="js/submit.js"></script>
+</body>  
+
+
 </html>
