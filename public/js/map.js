@@ -11,13 +11,10 @@ const map = new mapboxgl.Map({
 async function getStore(store){
    const loc = await fetch('/api/v1/auth/stores');
    const res = await loc.json()
+       
+   console.log(res)
 
-
-   try {
-    
-   } catch (error) {
-    
-   }
+   
 
 }
 
@@ -33,17 +30,17 @@ map.on('load', () => {
       data: {
         type: 'FeatureCollection',
         features: [
-          // {
-          //   type: 'Feature',
-          //   geometry: {
-          //     type: 'Point',
-          //     coordinates: [-77.4144, 25.0759]
-          //   },
-          //   properties:{
-          //     clinicId:'001',
-          //     icon:'shop'
-          //   }
-          // }
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-77.4144, 25.0759]
+            },
+            properties:{
+              clinicId:'001',
+              icon:'shop'
+            }
+          }
         ]
       }
     }, 
@@ -58,26 +55,10 @@ map.on('load', () => {
 });
 
 
+getStore()
 
 
 
 
 
 
-map.addSource('point', {
-  'type': 'geojson',
-  'data': {
-    'type': 'FeatureCollection',
-    'features': [
-      {
-        'type': 'Feature',
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [-77.4144, 25.0759]
-        }
-      }
-    ]
-  }
-}
-
-);

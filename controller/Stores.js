@@ -1,15 +1,17 @@
 const customError = require('../error')
 const {StatusCodes} = require('http-status-codes')
 const Store = require('../model/model')
+const response = require('../response/response')
 
 
 const getAllStores = async(req,res) =>{
     const stores = await Store.find()
-     res.status(StatusCodes.OK).json({
-       success:true,
-       count:stores.length,
-       data:stores
-     })
+
+    if(!stores){
+      throw new customError.NotFoundError('Store not found!')
+    }
+
+     res.status(StatusCodes.CREATED).send(response({data:stores,msg:'Stores Around you!'}))
   }
 
 const addStore = async(req,res) =>{
@@ -21,10 +23,7 @@ const addStore = async(req,res) =>{
 
    const stores = await Store.create(req.body)
 
-   res.status(StatusCodes.OK).json({
-     success:true,
-     data:stores
-   })
+   res.status(StatusCodes.OK).send(response({data:stores,msg:'Store Added!'}))
 }
 
 const updateStore = async(req,res) =>{
@@ -42,7 +41,7 @@ const updateStore = async(req,res) =>{
 
    await verifyClinic.save()
 
-   res.status(StatusCodes.OK).json({msg:'Store Successfully updated'})
+   res.status(StatusCodes.OK).send(response({msg:'Store information Updated'}))
 }
 
 
@@ -57,7 +56,7 @@ const removeStore = async(req,res) =>{
 
   await removeClinic.remove()
 
-  res.status(StatusCodes.OK).json({msg:'Clinic removed Successfully'})
+  res.status(StatusCodes.OK).send('Store Information removed')
 } 
 
 

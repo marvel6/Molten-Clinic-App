@@ -11,19 +11,24 @@ const helmet = require('helmet')
 
 const morgan = require('morgan')
 
+//middlewares
+
+const NotFoundError = require('./middleware/notFound')
+
 
 const connectDb = require('./db/connect')
 
 const router = require('./router/addStoreRouter')
 
 
-//middleware functions
-
-
 
 
 app.use(express.json())
 app.use(morgan("tiny"))
+
+
+//middleware functions
+
 
 app.use(express.static('./public'))
 
