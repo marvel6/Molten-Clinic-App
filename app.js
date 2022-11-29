@@ -13,18 +13,23 @@ const morgan = require('morgan')
 
 //middlewares
 
-const NotFoundError = require('./middleware/notFound')
+const cookies = require('cookie-parser')
+
+const router = require('./router/addStoreRouter')
+const userRoute = require('./router/userRouter')
+
+
 
 
 const connectDb = require('./db/connect')
 
-const router = require('./router/addStoreRouter')
 
 
 
 
 app.use(express.json())
 app.use(morgan("tiny"))
+app.use(cookies(process.env.JWT_SECRET))
 
 
 //middleware functions
@@ -32,8 +37,11 @@ app.use(morgan("tiny"))
 
 app.use(express.static('./public'))
 
-
+//Route
 app.use('/api/v1/auth/stores',router)
+app.use('/api/v1/auth/stores',userRoute)
+
+
 
 
 const start = async () =>{
