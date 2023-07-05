@@ -6,7 +6,7 @@ const {addStore,updateStore,removeStore,getAllStores} = require('../controller/S
 
 
 router.route('/').post(addStore).get(getAllStores)
-router.route('/:id').patch(updateStore).delete(removeStore)
+
 
 
 module.exports = router

@@ -38,22 +38,26 @@ app.use(cookies(process.env.JWT_SECRET))
 app.use(express.static('./public'))
 
 //Route
-app.use('/api/v1/auth/stores',router)
-app.use('/api/v1/auth/stores',userRoute)
+app.use('/api/v1/auth/stores', router)
+app.use('/api/v1/auth/stores', userRoute)
 
 
 
 
-const start = async () =>{
+const start = async () => {
     try {
-        await connectDb("mongodb://0.0.0.0:27017/Clinic")
-        app.listen(port,()=> console.log(`App listening on port ${port}`))
+        await connectDb(process.env.MONGO_URI)
+
     } catch (error) {
         console.log(error)
     }
 }
 
 
-start()
+start().then(() => {
+
+    app.listen(port, () => console.log(`App listening on port ${port}`))
+
+})
 
 
