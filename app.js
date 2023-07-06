@@ -42,7 +42,7 @@ app.use('/api/v1/auth/stores', router)
 app.use('/api/v1/auth/stores', userRoute)
 
 
-
+// process.env.MONGO_URI
 
 const start = async () => {
     try {
